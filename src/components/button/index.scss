@@ -1,0 +1,126 @@
+@import '../styles/index.scss';
+
+$tile-button: tile-button;
+
+.#{$tile-button}{
+  outline: none;
+  font-size: $font-size-normal;
+  display: inline-block;
+  width: auto;
+
+  &__wrap{
+    max-width: 100%;
+  }
+
+  &--default{
+    color: $button-default-color;
+    border: 1px solid $button-default-border-color;
+    background-color: $button-default-background-color;
+    &:active{
+      background-color: darken($color: $button-default-background-color, $amount: 10)
+    }
+  }
+
+  &--primary{
+    color: $button-primary-color;
+    border: 1px solid $button-primary-border-color;
+    background-color: $button-primary-background-color;
+    &:active{
+      background-color: darken($color: $button-primary-background-color, $amount: 10)
+    }
+  }
+
+  &--danger{
+    color: $button-danger-color;
+    border: 1px solid $button-danger-border-color;
+    background-color: $button-danger-background-color;
+    &:active{
+      background-color: darken($color: $button-danger-background-color, $amount: 10)
+    }
+  }
+
+  &--warning{
+    color: $button-warning-color;
+    border: 1px solid $button-warning-border-color;
+    background-color: $button-warning-background-color;
+    &:active{
+      background-color: darken($color: $button-warning-background-color, $amount: 10)
+    }
+  }
+
+  
+    @each $type, $color in (primary, $button-primary-background-color),
+    (danger, $button-danger-background-color),
+    (danger, $button-danger-background-color) {
+      &--plain{
+         background-color:transparent;
+        &.#{$tile-button}--#{$type} {
+          color: $color;
+          &:active{
+            background-color: transparent;
+            color: lighten($color: $color, $amount: 10);
+            border-color: lighten($color: $color, $amount: 10);
+          }  
+        }
+      }
+    }
+    /*默认按钮样式*/
+    &--plain{
+      background-color:transparent;
+      &.#{$tile-button}--default{
+        &:active{
+          background-color: transparent;
+            color: lighten($color: $button-default-color, $amount: 10);
+            border-color: lighten($color: $button-default-background-color, $amount: 10);
+        }
+      }
+    }
+ 
+
+  &--large{
+   /*微信小程序iphone 5,6,7下面存在1px边框显示不全问题，不设置box-sizeing,然后将边框减去*/
+    width: calc(100% - 2px);
+    height: $button-large-height;
+    line-height: $button-large-height - 2px;
+  }
+
+  &--normal{
+    padding: 0 15px * $hd;
+    height: $button-normal-height;
+    line-height: $button-normal-height - 2px;
+  }
+
+  &--small{
+    padding: 0 8px * $hd;
+    height: $button-small-height;
+    min-width: 60px * $hd;
+    font-size: $font-size-mini;
+    line-height: $button-small-height - 2px;
+  }
+
+  &--mini{
+    min-width: 50px * $hd;
+    padding: 0 4px * $hd;
+    font-size: $font-size-tiny;
+    height: $button-mini-height;
+    display: inline-block;
+    line-height: $button-mini-height - 2px;
+  }
+
+  &--disabled{
+    opacity: .5;
+  }
+
+  &--block{
+    display: block;
+    width: calc(100% - 2px);
+  }
+
+  &--square{
+    border-radius: 0;
+  }
+  
+  &--round{
+    border-radius: $button-large-height;
+  }
+}

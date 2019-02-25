@@ -1,0 +1,66 @@
+$hd: 2 !default; // 基本单位
+
+// Color variables
+$black: #000;
+$white: #fff;
+$red: #f44 !default;
+$blue: #1989fa;
+$orange: #ff976a;
+$orange-dark: #ed6a0c;
+$orange-light: #fffbe8;
+$green: #07c160;
+$gray: #c8c9cc;
+$gray-light: #e5e5e5;
+$gray-darker: #7d7e80;
+$gray-dark: #969799;
+
+// Default colors
+$text-color: #323233;
+$border-color: #ebedf0;
+$active-color: #e8e8e8;
+$background-color: #f8f8f8;
+$background-color-light: #fafafa;
+
+
+// 字体大小
+$font-size-normal: 16px * $hd !default;
+$font-size-small : 14px * $hd !default;
+$font-size-mini: 12px * $hd !default;
+$font-size-tiny: 10px * $hd !default;
+$font-size-large: 18px * $hd !default;
+$font-size-larger: 20px * $hd !default;
+
+// Button 变量
+$button-default-color: $text-color;
+$button-default-background-color: $white;
+$button-default-border-color: $border-color;
+$button-primary-color: $white;
+$button-primary-background-color: $green;
+$button-primary-border-color: $green;
+$button-danger-color: $white;
+$button-danger-background-color: $red;
+$button-danger-border-color: $red;
+$button-warning-color: $white;
+$button-warning-background-color: $orange;
+$button-warning-border-color: $orange;
+$button-large-height: 55px * $hd !default;
+$button-normal-height: 44px * $hd !default;
+$button-small-height: 30px * $hd !default;
+$button-mini-height: 20px * $hd !default;
+
+//Popup 变量
+$popup-background-color:$white !default;
+$popup-overlay-background-color: rgba($black, .4);
+$popup-position-top-bottom-height: 100px * $hd !default;
+$popup-position-left-right-width: 300px * $hd !default;
+
+//ActionSheet 变量
+$actionsheet-title-color: $text-color;
+$actionsheet-title-font-size: $font-size-normal;
+$actionsheet-item-height: 44px * $hd;
+$actionsheet-item-color: $text-color;
+$actionsheet-item-disabled-color: $gray;
+$actionsheet-item-active-background-color: $active-color;
+$actionsheet-item-font-size:$font-size-normal;
+$actionsheet-item-border-color: $border-color;
+$actionsheet-button-background-color: $background-color;

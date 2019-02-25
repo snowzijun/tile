@@ -1,0 +1,19 @@
+@import '../../styles/index.scss';
+.tile-actionsheetitem{
+  color: $actionsheet-item-color; 
+  font-size: $actionsheet-item-font-size;
+  text-align: center;
+  height: $actionsheet-item-height;
+  line-height: $actionsheet-item-height; 
+  border-top: 1px solid $actionsheet-item-border-color;
+  box-sizing: border-box;
+
+  &:active{
+    background-color: $actionsheet-item-active-background-color;
+  }
+
+  &--disabled{
+    color: $actionsheet-item-disabled-color;
+    pointer-events: none;
+  }
+}

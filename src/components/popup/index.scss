@@ -1,0 +1,86 @@
+@import '../styles/index.scss';
+
+$tile-popup: tile-popup;
+$tile-popup-duration: 200ms;
+
+.#{$tile-popup} {
+  overflow: hidden; 
+  visibility: hidden; 
+  transition: visibility $tile-popup-duration ease-in;
+  &__overlay{
+    opacity: 0;
+    transition: opacity $tile-popup-duration ease-in;
+  }
+  &__content{
+    overflow: hidden;
+    @mixin transition($position,$size) {
+      &--#{$position}{
+        #{$position}: -$size;
+        transition: $position $tile-popup-duration ease;
+      }
+    }
+    @include transition(left, $popup-position-left-right-width);
+    @include transition(right, $popup-position-left-right-width);
+    @include transition(bottom, 100vh);
+    @include transition(top, 100vh);
+  }
+  &--active{
+    transition: visibility $tile-popup-duration ease-in; 
+    visibility: visible; 
+    .#{tile-popup}__overlay{
+      transition: opacity $tile-popup-duration ease-in;
+      opacity: 1;
+    } 
+    .#{tile-popup}__content{
+      opacity: 1;
+      @mixin transiton($position) {
+        &--#{$position}{
+          #{$position}: 0;
+          transition: $position $tile-popup-duration ease; 
+        }
+      }
+      @include transiton(left);
+      @include transiton(right);
+      @include transiton(bottom);
+      @include transiton(top);
+    }
+  } 
+
+  &__overlay{
+    width: 100%;
+    height: 100%; 
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: $popup-overlay-background-color;
+  }
+
+  &__content{
+    background-color: $popup-background-color;
+    &--center{
+      position: fixed; 
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  
+    &--left,
+    &--right {
+      width: $popup-position-left-right-width;
+      top: 0;
+      height: 100%;
+      position: absolute;
+    } 
+
+  
+    &--top,
+    &--bottom{
+      min-height: $popup-position-top-bottom-height;
+      max-height: 100%;
+      width: 100%; 
+      position: absolute;
+      left: 0;
+    }
+  }
+  
+}   

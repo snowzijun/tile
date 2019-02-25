@@ -1,0 +1,15 @@
+@import '../styles/index.scss';
+.tile-actionsheet{
+  &__title{
+    color: $actionsheet-title-color;
+    font-size: $actionsheet-title-font-size;
+    text-align: center;
+    height: $actionsheet-item-height;
+    line-height: $actionsheet-item-height;
+  }
+
+  &__footer{
+    padding-top: 20px; 
+    background-color: $actionsheet-button-background-color;
+  }
+} 
