@@ -2,7 +2,6 @@ import Taro  from '@tarojs/taro'
 import PropTypes from 'prop-types'
 import { View, Text } from '@tarojs/components'
 import BaseComponent from '../../basic/index'
-import './index.scss'
 
 export default class TileActionSheetItem extends BaseComponent{
   name='actionsheetitem'

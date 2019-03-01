@@ -1,0 +1,49 @@
+@import '../../variables/var.scss';
+@import '../../mixin/mixin.scss';
+
+$tile-notity-duration: 200ms;
+
+.tile-notify{
+  position: fixed;
+  top: -$notify-height;
+  left: 0;
+  width: 100%;
+  color: $notify-color;
+  font-size: $notify-font-size;
+  transition: top $tile-notity-duration ease-in;
+  height: $notify-height;
+  text-align: center;
+  line-height: $notify-height;
+
+  &__text{
+    width: 100%;
+    @include textEllipsis;
+    display: inline-block;
+  }
+
+  &--show{
+    transition: top $tile-notity-duration ease-out;
+    top: 0;
+  }
+
+  &--normal{
+    background-color: $notify-normal-background-color;
+  }
+
+  &--info{
+    background-color: $notify-info-background-color;
+  }
+
+  &--success{
+    background-color: $notify-success-background-color;
+  }
+
+  &--error{
+    background-color: $notify-error-background-color;
+  }
+
+  &--warning{
+    background-color: $notify-warning-background-color;
+  }
+
+}

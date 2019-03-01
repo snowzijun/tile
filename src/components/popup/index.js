@@ -3,10 +3,13 @@ import { View } from '@tarojs/components'
 import PropTypes from 'prop-types'
 import BaseComponent from '../basic'
 import { handleTouchScroll } from '../../utils/utils.js'
-import './index.scss'
 
 // 基础的zIndex
 let zIndex = 1000
+
+const isPromise = (obj) => {
+  return Object.prototype.toString.call(obj) === '[object Promise]'
+}
 
 export default class TilePopup extends BaseComponent{
   name = 'popup'
@@ -16,7 +19,8 @@ export default class TilePopup extends BaseComponent{
     position: 'center',
     customStyle: '',
     overlayStyle: '',
-    closeOnClickOverlay: true
+    closeOnClickOverlay: true,
+    onBeforeClose:() => {return Promise.resolve()}
   }
   static propTypes = {
     overlay: PropTypes.bool,
@@ -25,7 +29,9 @@ export default class TilePopup extends BaseComponent{
     customStyle: PropTypes.oneOfType([PropTypes.object,PropTypes.string]),
     overlayStyle:  PropTypes.oneOfType([PropTypes.object,PropTypes.string]),
     closeOnClickOverlay: PropTypes.bool,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    // 支持promise和普通函数
+    onBeforeClose: PropTypes.func
   }
   constructor(props){
     super(...arguments)
@@ -34,13 +40,33 @@ export default class TilePopup extends BaseComponent{
     })
   }
   handleClick(){
-    const { onClose, closeOnClickOverlay = false } = this.props
+    const { closeOnClickOverlay = false } = this.props
     if( closeOnClickOverlay){
+      this.closePopup()
+    }
+  }
+
+  closePopup(){
+    const close = () => {
+      const {onClose} = this.props
       this.setState({
         open: false
       })
       onClose && onClose()
     }
+    const { onBeforeClose = () => Promise.resolve() } = this.props
+    debugger
+    const result = onBeforeClose()
+    if(isPromise(result)){
+      result.then(() => {
+        close()
+      }).catch(()=>{})
+    }else{
+      if(result){
+        close()
+      }
+    }
+    
   }
 
   componentWillReceiveProps(nextProps){
@@ -50,19 +76,23 @@ export default class TilePopup extends BaseComponent{
       handleTouchScroll(show)
     }
     if(show != this.state.open){
-      this.setState({
-        open: show
-      })
+      if(!show){
+        this.closePopup()
+      }else{
+        this.setState({
+          open: show
+        })
+      }
+      
     }
   }
 
   render(){
-    const { overlay, position, customStyle, overlayStyle, className } = this.props
+    const { overlay, position, customStyle, overlayStyle } = this.props
     const { open = false } = this.state
     return (
       <View className={
-        this.classnames([open && 'active']) + ' ' + className
-      }
+        this.classnames([open && 'active'])}
         style={{zIndex: zIndex++}}
       >
         {overlay && <View 

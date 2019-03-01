@@ -1,9 +1,8 @@
 import Taro from '@tarojs/taro'
-import { TilePopup, TileButton, TileActionSheetItem } from 'tile'
+import { TilePopup, TileButton, TileActionSheetItem } from 'tile-ui'
 import PropTypes from 'prop-types'
 import { View } from '@tarojs/components'
 import BaseComponent from '../basic/index'
-import './index.scss'
 
 export default class TileActionSheet extends BaseComponent{
   name='actionsheet'

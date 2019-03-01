@@ -64,3 +64,20 @@ $actionsheet-item-active-background-color: $active-color;
 $actionsheet-item-font-size:$font-size-normal;
 $actionsheet-item-border-color: $border-color;
 $actionsheet-button-background-color: $background-color;
+
+// Notify 变量
+$notify-font-size: $font-size-small;
+$notify-normal-background-color: $blue; 
+$notify-info-background-color: $orange-dark; 
+$notify-warning-background-color: $orange; 
+$notify-success-background-color: $green; 
+$notify-error-background-color: $red; 
+$notify-color: $white;
+$notify-height: 24px * $hd;
+
+// Dialog 变量
+$dialog-width: 300px * $hd;
+$dialog-title-color: $text-color;
+$dialog-title-font-size: $font-size-normal;
+$dialog-border-radius: 4px * $hd;
+$dialog-background-color: $white;

@@ -1,4 +1,5 @@
-@import '../styles/index.scss';
+@import '../../variables/var.scss';
+
 
 $tile-button: tile-button;
 
@@ -79,7 +80,7 @@ $tile-button: tile-button;
 
   &--large{
    /*微信小程序iphone 5,6,7下面存在1px边框显示不全问题，不设置box-sizeing,然后将边框减去*/
-    width: calc(100% - 2px);
+    width: 100%;
     height: $button-large-height;
     line-height: $button-large-height - 2px;
   }
@@ -113,7 +114,10 @@ $tile-button: tile-button;
 
   &--block{
     display: block;
-    width: calc(100% - 2px);
+    width: 100%;
+    &.#{$tile-button}--plain{
+      width: calc(100% - 2px);
+    }
   }
 
   &--square{

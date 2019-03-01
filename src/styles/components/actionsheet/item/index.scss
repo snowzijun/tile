@@ -1,4 +1,5 @@
-@import '../../styles/index.scss';
+@import '../../../variables/var.scss';
+
 .tile-actionsheetitem{
   color: $actionsheet-item-color; 
   font-size: $actionsheet-item-font-size;

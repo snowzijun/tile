@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
+
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = {
   projectName: 'tile',
@@ -29,7 +32,7 @@ const config = {
   defineConstants: {
   },
   alias: {
-    'tile': path.resolve(__dirname, '../src/index.js'),
+    'tile-ui': path.resolve(__dirname, '../src/ui.js'),
   },
   copy: {
     patterns: [
@@ -75,9 +78,6 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
-    devServer:{
-      port: '10000'
-    },
     module: {
       postcss: {
         autoprefixer: {
@@ -99,6 +99,42 @@ const config = {
         }
       }
     }
+  }
+}
+
+if (process.env.TARO_BUILD_TYPE === 'ui') {
+  Object.assign(config.h5, {
+    enableSourceMap: false,
+    enableExtract: false,
+    enableDll: false
+  })
+  config.h5.webpackChain = chain => {
+    chain.plugins.delete('htmlWebpackPlugin')
+    chain.plugins.delete('addAssetHtmlWebpackPlugin')
+    chain.merge({
+      output: {
+        path: path.join(process.cwd(), 'dist', 'h5'),
+        filename: 'index.js',
+        libraryTarget: 'umd',
+        library: 'tile-ui'
+      },
+      externals: {
+        nervjs: 'commonjs2 nervjs',
+        classnames: 'commonjs2 classnames',
+        '@tarojs/components': 'commonjs2 @tarojs/components',
+        '@tarojs/taro-h5': 'commonjs2 @tarojs/taro-h5',
+        'weui': 'commonjs2 weui'
+      },
+      plugin: {
+        extractCSS: {
+          plugin: MiniCssExtractPlugin,
+          args: [{
+            filename: 'css/index.css',
+            chunkFilename: 'css/[id].css'
+          }]
+        }
+      }
+    })
   }
 }
 

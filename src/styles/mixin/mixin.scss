@@ -1,0 +1,15 @@
+/*单行文本省略*/
+@mixin textEllipsis {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
+}
+
+/* 多行文本省略*/
+@mixin multiTextEllipsis($lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}

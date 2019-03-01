@@ -1,0 +1,35 @@
+@import '../../variables/var.scss';
+@import '../../mixin/mixin.scss';
+
+.tile-dialog{
+  width: $dialog-width;
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $dialog-background-color;
+  border-radius: $dialog-border-radius;
+
+  &__title{
+    color: $dialog-title-color;
+    font-size: $dialog-title-font-size;
+    text-align: center;
+    @include textEllipsis;
+    padding-top: 50px;
+    padding-bottom: 10px;
+  }
+
+  &__buttons{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+  }
+
+  &__content{
+    flex: 1;
+  }
+
+  &__button{
+    flex: 1;
+  }
+}
